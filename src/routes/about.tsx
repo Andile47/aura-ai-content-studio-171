@@ -37,7 +37,7 @@ const PILLARS = [
   },
 ];
 
-export function AboutPage() {
+function AboutPage() {
   return (
     <>
       <PageHeader
