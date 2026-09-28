@@ -82,8 +82,8 @@ function DashboardPage() {
           </div>
           <img
             src={heroImage}
-            alt="Soft abstract composition in cream, caramel and rose tones"
-            className="h-48 w-full rounded-2xl object-cover sm:h-60 lg:h-72"
+            alt="Illustration of a young Black woman in tech wearing headphones, working on a laptop surrounded by soft AI sparkles"
+            className="h-48 w-full rounded-2xl object-cover object-[70%_center] sm:h-60 lg:h-72"
           />
         </div>
       </section>
