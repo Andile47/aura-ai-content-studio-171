@@ -144,3 +144,27 @@ export const refineContent = createServerFn({ method: "POST" })
     const text = await callGateway(BASE_SYSTEM, user);
     return { content: text };
   });
+
+const codeSchema = z.object({
+  request: z.string().min(3).max(4000),
+  language: z.string().min(1).max(40),
+  level: z.string().min(1).max(40),
+});
+
+export const generateCode = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => codeSchema.parse(data))
+  .handler(async ({ data }) => {
+    const system =
+      "You are Aura, a patient coding assistant. Write correct, clean, well-commented code. Never invent APIs or libraries that don't exist. Never mention that you are an AI model.";
+    const user = [
+      `Task: ${data.request}`,
+      `Language: ${data.language}`,
+      `Explain for a ${data.level} reader.`,
+      "Return exactly two parts: first the complete code inside one fenced code block, then a short plain-language explanation under the heading 'How it works' as 3-6 bullet points.",
+    ].join("\n");
+    const text = await callGateway(system, user);
+    const match = text.match(/```[\w+#-]*\n([\s\S]*?)```/);
+    const code = match ? (match[1] ?? "").trimEnd() : text;
+    const explanation = match ? text.replace(match[0], "").trim() : "";
+    return { code, explanation };
+  });

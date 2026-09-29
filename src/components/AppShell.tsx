@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, Sparkles, LayoutDashboard, PenLine, BookOpen, Bookmark, Heart } from "lucide-react";
+import { Menu, Sparkles, LayoutDashboard, PenLine, BookOpen, Bookmark, Heart, Code2 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/generate", label: "Generate", icon: PenLine },
   { to: "/prompts", label: "Prompt Library", icon: BookOpen },
+  { to: "/code", label: "Generate Code", icon: Code2 },
   { to: "/saved", label: "Saved Content", icon: Bookmark },
   { to: "/about", label: "About", icon: Heart },
 ] as const;

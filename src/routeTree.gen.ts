@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CodeRouteImport } from './routes/code'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as GenerateRouteImport } from './routes/generate'
 import { Route as PromptsRouteImport } from './routes/prompts'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CodeRoute = CodeRouteImport.update({
+  id: '/code',
+  path: '/code',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -50,6 +56,7 @@ const SavedRoute = SavedRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code': typeof CodeRoute
   '/dashboard': typeof DashboardRoute
   '/generate': typeof GenerateRoute
   '/prompts': typeof PromptsRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code': typeof CodeRoute
   '/dashboard': typeof DashboardRoute
   '/generate': typeof GenerateRoute
   '/prompts': typeof PromptsRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code': typeof CodeRoute
   '/dashboard': typeof DashboardRoute
   '/generate': typeof GenerateRoute
   '/prompts': typeof PromptsRoute
@@ -74,13 +83,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/dashboard' | '/generate' | '/prompts' | '/saved'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/code'
+    | '/dashboard'
+    | '/generate'
+    | '/prompts'
+    | '/saved'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/dashboard' | '/generate' | '/prompts' | '/saved'
+  to:
+    | '/'
+    | '/about'
+    | '/code'
+    | '/dashboard'
+    | '/generate'
+    | '/prompts'
+    | '/saved'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/code'
     | '/dashboard'
     | '/generate'
     | '/prompts'
@@ -90,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CodeRoute: typeof CodeRoute
   DashboardRoute: typeof DashboardRoute
   GenerateRoute: typeof GenerateRoute
   PromptsRoute: typeof PromptsRoute
@@ -110,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/code': {
+      id: '/code'
+      path: '/code'
+      fullPath: '/code'
+      preLoaderRoute: typeof CodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -146,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CodeRoute: CodeRoute,
   DashboardRoute: DashboardRoute,
   GenerateRoute: GenerateRoute,
   PromptsRoute: PromptsRoute,
