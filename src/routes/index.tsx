@@ -1,184 +1,84 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
-import { ContentCard } from "@/components/ContentCard";
+import { Brand } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
-import { contentTypeLabel, countWords } from "@/lib/content";
-import { PROMPT_LIBRARY } from "@/lib/prompts";
-import { useHistory, useSavedContent, useSavedPrompts } from "@/lib/store";
 import heroImage from "@/assets/aura-hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aura AI Content Studio — Create with intention" },
+      { title: "Welcome to Aura — AI Content Studio" },
       {
         name: "description",
-        content:
-          "Turn your ideas into polished captions, posts, emails, articles and study notes with Aura's AI content studio.",
+        content: "Create polished content, refine your ideas and work smarter with AI.",
       },
-      { property: "og:title", content: "Aura AI Content Studio — Create with intention" },
-      {
-        property: "og:description",
-        content: "Your ideas. Your voice. Enhanced by AI.",
-      },
+      { property: "og:title", content: "Welcome to Aura — AI Content Studio" },
+      { property: "og:description", content: "Your ideas. Your voice. Enhanced by AI." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: DashboardPage,
+  component: WelcomePage,
 });
 
-function DashboardPage() {
-  const { history } = useHistory();
-  const { saved } = useSavedContent();
-  const { promptIds } = useSavedPrompts();
-
-  const savedPrompts = PROMPT_LIBRARY.filter((p) => promptIds.includes(p.id));
-  const totalWords = history.reduce((sum, item) => sum + countWords(item.content), 0);
-  const favouriteTypes = Object.entries(
-    history.reduce<Record<string, number>>((acc, item) => {
-      acc[item.contentType] = (acc[item.contentType] ?? 0) + 1;
-      return acc;
-    }, {}),
-  )
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 4);
-
-  const stats = [
-    { label: "Pieces generated", value: history.length },
-    { label: "Words written", value: totalWords.toLocaleString() },
-    { label: "Saved drafts", value: saved.length },
-    { label: "Saved prompts", value: savedPrompts.length },
-  ];
-
+function WelcomePage() {
   return (
-    <>
-      <section className="warm-panel surface-card relative overflow-hidden p-6 sm:p-10">
-        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div className="space-y-5">
-            <p className="text-[0.7rem] tracking-[0.2em] text-muted-foreground uppercase">
-              Welcome back
-            </p>
-            <h1 className="text-4xl sm:text-5xl">Create with intention.</h1>
-            <p className="max-w-lg text-base leading-relaxed text-muted-foreground">
-              Turn your ideas into polished content with AI.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/generate">
-                  <Sparkles className="size-4" strokeWidth={1.75} />
-                  Start Creating
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/prompts">
-                  <BookOpen className="size-4" strokeWidth={1.75} />
-                  Explore Prompts
-                </Link>
-              </Button>
-            </div>
-            <p className="text-xs tracking-wide text-muted-foreground">
-              Your ideas. Your voice. Enhanced by AI.
-            </p>
-          </div>
-          <img
-            src={heroImage}
-            alt="Illustration of a young Black woman in tech wearing headphones, working on a laptop surrounded by soft AI sparkles"
-            className="h-48 w-full rounded-2xl object-cover object-[70%_center] sm:h-60 lg:h-72"
-          />
-        </div>
-      </section>
+    <div className="relative flex min-h-screen flex-col overflow-hidden bg-background">
+      {/* soft flowing shapes */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-32 -top-32 size-[28rem] rounded-full bg-rose/25 blur-3xl" />
+        <div className="absolute -bottom-40 right-[-8rem] size-[32rem] rounded-full bg-gold/20 blur-3xl" />
+        <div className="absolute left-1/3 top-1/2 size-72 rounded-full bg-secondary/70 blur-3xl" />
+        <Sparkles className="absolute left-[12%] top-[28%] size-4 text-gold/70" strokeWidth={1.5} />
+        <Sparkles className="absolute right-[18%] top-[14%] size-5 text-rose/70" strokeWidth={1.5} />
+        <Sparkles className="absolute bottom-[16%] left-[46%] size-3 text-gold/60" strokeWidth={1.5} />
+      </div>
 
-      <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <div key={stat.label} className="surface-card p-5">
-            <p className="font-display text-3xl">{stat.value}</p>
-            <p className="mt-1 text-xs tracking-wide text-muted-foreground uppercase">
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </section>
+      <header className="relative z-10 flex justify-center pt-10">
+        <Brand centered />
+      </header>
 
-      <section className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl">Recently generated</h2>
+      <main className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-10 px-6 py-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="space-y-6 text-center lg:text-left">
+          <h1 className="text-5xl sm:text-6xl">Welcome to Aura.</h1>
+          <p className="font-display text-2xl text-primary sm:text-3xl">
+            Your ideas. Your voice. Enhanced by AI.
+          </p>
+          <p className="mx-auto max-w-md text-base leading-relaxed text-muted-foreground lg:mx-0">
+            Create polished content, refine your ideas and work smarter with AI.
+          </p>
+          <div className="flex flex-col items-center gap-4 pt-2 sm:flex-row sm:justify-center lg:justify-start">
+            <Button asChild size="lg" className="px-8">
+              <Link to="/dashboard">
+                Get Started
+                <ArrowRight className="size-4" strokeWidth={1.75} />
+              </Link>
+            </Button>
             <Link
-              to="/saved"
-              className="flex items-center gap-1 text-xs text-primary hover:underline"
+              to="/about"
+              className="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
             >
-              Saved content
-              <ArrowRight className="size-3" strokeWidth={1.75} />
+              Explore Aura
             </Link>
           </div>
-          {history.slice(0, 3).map((item) => (
-            <div key={item.id} className="space-y-2">
-              <p className="text-sm text-muted-foreground">{item.topic}</p>
-              <ContentCard
-                content={item.content}
-                meta={`${contentTypeLabel(item.contentType)} · ${item.tone} · ${new Date(
-                  item.createdAt,
-                ).toLocaleDateString()}`}
-              />
-            </div>
-          ))}
         </div>
 
-        <div className="space-y-6">
-          <div className="surface-card p-5">
-            <h2 className="text-xl">Saved prompts</h2>
-            <div className="mt-4 space-y-3">
-              {savedPrompts.length === 0 ? (
-                <p className="text-sm text-muted-foreground">
-                  Bookmark a prompt in the library and it will appear here.
-                </p>
-              ) : (
-                savedPrompts.map((prompt) => (
-                  <Link
-                    key={prompt.id}
-                    to="/generate"
-                    search={{ topic: prompt.text, type: prompt.contentType }}
-                    className="block rounded-lg border border-border bg-secondary/40 px-4 py-3 transition-colors hover:border-primary"
-                  >
-                    <p className="text-sm">{prompt.name}</p>
-                    <p className="text-xs text-muted-foreground">{prompt.category}</p>
-                  </Link>
-                ))
-              )}
-            </div>
+        <div className="relative">
+          <div aria-hidden className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-rose/30 via-transparent to-gold/30 blur-xl" />
+          <div className="surface-card relative overflow-hidden p-2">
+            <img
+              src={heroImage}
+              alt="Illustration of a young Black woman in tech wearing headphones, working on a laptop surrounded by soft AI sparkles"
+              className="h-72 w-full rounded-xl object-cover object-[70%_center] sm:h-96 lg:h-[28rem]"
+            />
           </div>
-
-          <div className="surface-card p-5">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="size-4 text-primary" strokeWidth={1.75} />
-              <h2 className="text-xl">Favourite content types</h2>
-            </div>
-            <div className="mt-4 space-y-3">
-              {favouriteTypes.length === 0 ? (
-                <p className="text-sm text-muted-foreground">Generate something to see patterns.</p>
-              ) : (
-                favouriteTypes.map(([type, count]) => {
-                  const max = favouriteTypes[0]?.[1] ?? 1;
-                  return (
-                    <div key={type} className="space-y-1.5">
-                      <div className="flex justify-between text-sm">
-                        <span>{contentTypeLabel(type)}</span>
-                        <span className="text-muted-foreground">{count}</span>
-                      </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-                        <div
-                          className="h-full rounded-full bg-primary"
-                          style={{ width: `${(count / max) * 100}%` }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
+          <div className="surface-card absolute -bottom-4 left-4 flex items-center gap-2 px-4 py-2 text-xs text-muted-foreground">
+            <Sparkles className="size-3.5 text-gold" strokeWidth={1.75} />
+            Drafting your LinkedIn post…
           </div>
         </div>
-      </section>
-    </>
+      </main>
+    </div>
   );
 }
