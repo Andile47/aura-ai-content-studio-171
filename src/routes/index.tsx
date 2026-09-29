@@ -33,8 +33,8 @@ function WelcomePage() {
       <img
         src={welcomeBg}
         alt="Young Black woman in glasses and cream headphones working on a laptop in a warm, sunlit studio"
-        width={1920}
-        height={832}
+        width={1200}
+        height={912}
         className="absolute inset-y-0 right-0 hidden h-full w-[62%] object-cover object-center md:block"
       />
       <div
