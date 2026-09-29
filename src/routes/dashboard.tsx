@@ -8,7 +8,7 @@ import { PROMPT_LIBRARY } from "@/lib/prompts";
 import { useHistory, useSavedContent, useSavedPrompts } from "@/lib/store";
 import heroImage from "@/assets/aura-hero.jpg";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Aura AI Content Studio — Create with intention" },
