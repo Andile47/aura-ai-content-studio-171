@@ -35,11 +35,11 @@ function WelcomePage() {
         alt="Young Black woman in glasses and cream headphones working on a laptop in a warm, sunlit studio"
         width={1920}
         height={832}
-        className="absolute inset-0 hidden h-full w-full object-cover object-right md:block"
+        className="absolute inset-y-0 right-0 hidden h-full w-[62%] object-cover object-center md:block"
       />
       <div
         aria-hidden
-        className="absolute inset-0 hidden bg-gradient-to-r from-background/40 via-background/20 to-transparent md:block"
+        className="absolute inset-0 hidden bg-gradient-to-r from-background from-40% via-background/70 via-50% to-transparent to-70% md:block"
       />
 
       {/* sparkles */}
