@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BarChart3, Heart, Lightbulb, PenLine, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import welcomeBg from "@/assets/aura-welcome-bg.jpg";
+import welcomeBg from "@/assets/aura-hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
