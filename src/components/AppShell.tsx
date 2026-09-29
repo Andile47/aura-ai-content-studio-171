@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { to: "/", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/generate", label: "Generate", icon: PenLine },
   { to: "/prompts", label: "Prompt Library", icon: BookOpen },
   { to: "/saved", label: "Saved Content", icon: Bookmark },
@@ -42,10 +42,17 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function Brand() {
+export function Brand({ centered = false }: { centered?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-2.5">
-      <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+    <Link
+      to="/"
+      aria-label="Aura home"
+      className={cn(
+        "group flex items-center gap-2.5 transition-all duration-300 hover:opacity-90",
+        centered && "flex-col gap-3 text-center",
+      )}
+    >
+      <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_18px_var(--gold)]">
         <Sparkles className="size-4" strokeWidth={1.75} />
       </span>
       <span className="leading-tight">
@@ -63,6 +70,8 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => setOpen(false), [pathname]);
+
+  if (pathname === "/") return <>{children}</>;
 
   return (
     <div className="flex min-h-screen w-full">
