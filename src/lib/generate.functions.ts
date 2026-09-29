@@ -164,7 +164,7 @@ export const generateCode = createServerFn({ method: "POST" })
     ].join("\n");
     const text = await callGateway(system, user);
     const match = text.match(/```[\w+#-]*\n([\s\S]*?)```/);
-    const code = match ? match[1].trimEnd() : text;
+    const code = match ? (match[1] ?? "").trimEnd() : text;
     const explanation = match ? text.replace(match[0], "").trim() : "";
     return { code, explanation };
   });
