@@ -43,7 +43,7 @@ function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="Built to remove the blank page."
-        description="Aura is an individual portfolio project demonstrating how thoughtful prompt design turns a rough idea into content someone would genuinely publish."
+        description="Aura shows how thoughtful prompt design turns a rough idea into content someone would genuinely publish."
       />
 
       <div className="grid gap-4 sm:grid-cols-3">
