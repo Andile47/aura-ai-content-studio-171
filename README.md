@@ -109,42 +109,4 @@ src/
 4. Rate-limit (429) and credit (402) errors come back as friendly messages.
 5. The result shows up in the output card, where you can refine it with Improve, Shorten or Expand.
 
----
 
-## Getting started locally
-
-Requirements: Node.js 20+ (or Bun).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm install
-npm run dev
-```
-
-The app runs at `http://localhost:8080`.
-
-### Environment variables
-
-AI generation needs an API key for the AI Gateway on the server:
-
-```env
-LOVABLE_API_KEY=your_key_here
-```
-
-When the project runs inside Lovable, this key is provided automatically.
-
----
-
-## Roadmap ideas
-
-- Chat mode for brainstorming and reworking drafts
-- User accounts with cloud-synced saved content
-- Export to PDF / Markdown
-- Custom brand voice profiles
-
----
-
-## Author
-
-Built by **Andile Khoza** with [Lovable](https://lovable.dev).
