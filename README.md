@@ -70,24 +70,6 @@ Instead, Aura uses accurate general statements, clearly labelled examples or hyp
 | Notifications | Sonner |
 | Persistence | Browser localStorage (history, saved content, saved prompts) |
 | Hosting | Lovable (edge runtime) |
-
----
-
-## Design system
-
-A soft, sophisticated and warm look. Not overly pink or decorative.
-
-| Token | Colour | Use |
-| --- | --- | --- |
-| Cream | `#F8F3EC` | Background |
-| Deep chocolate | `#3A2924` | Text |
-| Caramel | `#B9825B` | Primary actions |
-| Soft beige | `#E9DED2` | Surfaces |
-| Muted rose | `#C89B9B` | Accent |
-| Soft gold | `#C7A46A` | Accent |
-
-Typography: **Fraunces** (display) and **Karla** (body). Rounded cards, subtle shadows and generous spacing throughout. The layout works on desktop (sidebar), tablet and mobile (slide-out menu).
-
 ---
 
 ## Project structure
