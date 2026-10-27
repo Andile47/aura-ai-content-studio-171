@@ -41,8 +41,6 @@ It is a portfolio project that shows prompt optimisation, content structuring an
 ### Saved Content
 - Keep the pieces you like, stored locally in your browser
 
-### About
-- What Aura is for and who it helps
 
 ---
 
